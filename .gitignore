@@ -1,0 +1,6 @@
+# Local tooling
+.claude/
+.vscode/
+Thumbs.db
+desktop.ini
+.DS_Store

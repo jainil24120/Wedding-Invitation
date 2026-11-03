@@ -1,0 +1,213 @@
+/* ==========================================================================
+   Responsive layouts — base styles are mobile first (style.css)
+   ========================================================================== */
+
+/* Precise pointers get the "Click" hint */
+@media (hover: hover) and (pointer: fine) {
+  .hint-touch { display: none; }
+  .hint-pointer { display: inline; }
+}
+
+/* ---------- Very small phones (320px) ---------- */
+@media (max-width: 359px) {
+  .family { letter-spacing: .06em; }
+  .label-caps { letter-spacing: .3em; }
+  .btn { padding: .6rem .9rem; letter-spacing: .14em; }
+  .countdown__label { letter-spacing: .08em; }
+  .event { padding-left: 44px; }
+  .plaque { --cut: 12px; }
+  .plaque__corner { width: 24px; height: 24px; }
+  .plaque__corner--tl, .plaque__corner--bl { left: 20px; }
+  .plaque__corner--tr, .plaque__corner--br { right: 20px; }
+  .plaque__corner--tl, .plaque__corner--tr { top: 20px; }
+  .plaque__corner--bl, .plaque__corner--br { bottom: 20px; }
+}
+
+/* ---------- Large phones / small tablets ---------- */
+@media (min-width: 600px) {
+  .plaque__names { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(5, auto); grid-auto-flow: column; column-gap: 2.4rem; }
+  .stars__names { flex-direction: row; flex-wrap: wrap; justify-content: center; column-gap: 1.4rem; }
+  .stars__names li:nth-child(3), .stars__names li:nth-child(7) { margin-top: 2.6rem; }
+  .firms__list { grid-template-columns: 1fr auto 1fr; align-items: start; }
+  .firms__rule { width: 1px; height: 120px; }
+}
+
+@media (min-width: 480px) {
+  .credit__links { flex-direction: row; justify-content: center; gap: .6rem; }
+  .credit__sep { display: inline; }
+}
+
+/* ---------- Tablet ---------- */
+@media (min-width: 768px) {
+  .moments .lantern { display: block; }
+  .lantern--l { left: 1%; top: 2vh; width: clamp(70px, 9vw, 130px); }
+  .lantern--r { right: 2%; top: 38vh; width: clamp(56px, 7vw, 100px); }
+  .timeline, .section-title { position: relative; z-index: 1; }
+}
+
+/* ---------- Desktop ---------- */
+@media (min-width: 900px) {
+  .rail {
+    display: block;
+    position: fixed;
+    right: calc(28px + var(--safe-r));
+    top: 50%;
+    z-index: 50;
+    transform: translateY(-50%);
+    transition: opacity .8s ease;
+  }
+  body.is-locked .rail { opacity: 0; pointer-events: none; }
+  .rail ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .rail a {
+    display: flex; flex-direction: row-reverse; align-items: center; gap: 14px;
+    position: relative;
+    min-height: 44px; min-width: 44px;
+    text-decoration: none;
+    color: rgba(230, 211, 168, .55);
+    transition: color .4s ease;
+  }
+  .rail__num { font-family: var(--f-caps); font-size: .78rem; letter-spacing: .12em; width: 28px; text-align: center; }
+  .rail__label {
+    font-family: var(--f-caps); font-size: .62rem; letter-spacing: .26em; text-transform: uppercase;
+    position: absolute; right: 42px;
+    opacity: 0; transform: translateX(8px);
+    transition: opacity .4s ease, transform .4s ease;
+    white-space: nowrap;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .8);
+  }
+  .rail a:hover, .rail a:focus-visible, .rail a.is-active { color: var(--c-gold-300); }
+  .rail a:hover .rail__label, .rail a:focus-visible .rail__label { opacity: 1; transform: none; }
+  .rail a.is-active .rail__num { border-bottom: 1px solid currentColor; }
+
+  .music { right: calc(28px + var(--safe-r)); bottom: calc(28px + var(--safe-b)); }
+
+  .prelude__names { flex-direction: row; align-items: baseline; gap: .18em; font-size: clamp(5rem, 8.6vw, 10rem); }
+  .prelude__names .amp { font-size: .62em; }
+
+  /* Chapter 01 — editorial offset names, details beside an arched image */
+  .names-grand__a { transform: translateX(-14%); }
+  .names-grand__b { transform: translateX(14%); }
+  .ch1-details {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    align-items: center;
+    justify-items: start;
+    column-gap: clamp(3rem, 7vw, 8rem);
+    max-width: 1240px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .ch1-details__media { justify-self: end; width: min(100%, 440px, 64svh); }
+  .ch1-details .orn--divider { margin-left: 0; }
+  .ch1-details .venue { margin-left: 0; }
+  .ch1-details .actions { justify-content: flex-start; }
+
+  /* Chapter 02 — text left, moving arch right; jharokha left, procession right */
+  .ch2-blessings {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    align-items: center;
+    column-gap: clamp(3rem, 6vw, 7rem);
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  .ch2-blessings__media { width: min(100%, 420px, 66svh); }
+  .names-mid { font-size: clamp(3.2rem, 5.4vw, 6rem); white-space: nowrap; }
+
+  .ch2-compliments {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 6fr);
+    align-items: center;
+    justify-items: start;
+    column-gap: clamp(3rem, 7vw, 8rem);
+    max-width: 1180px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .ch2-compliments__media { justify-self: end; width: min(100%, 360px, 58svh); }
+  .procession li { flex-direction: row; gap: 1.1rem; }
+  .procession li:nth-child(2n) { margin-left: clamp(2rem, 4vw, 4.5rem); }
+  .procession li:nth-child(3) { margin-left: clamp(4rem, 8vw, 9rem); }
+
+  /* Chapter 03 — alternating timeline around a central spine */
+  .timeline { gap: 7rem; }
+  .timeline__spine { left: 50%; }
+  .event {
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "date info";
+    column-gap: clamp(4rem, 8vw, 8rem);
+    align-items: center;
+  }
+  .event__marker { left: 50%; top: 50%; transform: translate(-50%, -50%); width: 34px; height: 34px; }
+  .event__date { grid-area: date; justify-content: flex-end; flex-direction: column; align-items: flex-end; gap: .6rem; margin: 0; }
+  .event__info { grid-area: info; }
+  .event__day { font-size: clamp(8rem, 13vw, 12.5rem); }
+  .event:nth-child(3) { grid-template-areas: "info date"; }
+  .event:nth-child(3) .event__date { align-items: flex-start; }
+  .event:nth-child(3) .event__info { text-align: right; }
+  .event:nth-child(3) .event__where { margin-left: auto; }
+  .event:nth-child(3) .actions { justify-content: flex-end; }
+
+  .countdown-scene__stage { width: min(48vw, 560px, 74svh); }
+  .stars__names { column-gap: 2rem; }
+
+  .closing__names { flex-direction: row; align-items: baseline; gap: .18em; font-size: clamp(4.4rem, 7.6vw, 9rem); }
+  .closing__names .amp { font-size: .62em; }
+}
+
+/* ---------- Wide desktop ---------- */
+@media (min-width: 1400px) {
+  :root { --gutter: 96px; }
+  .lantern--l { left: 4%; }
+  .lantern--r { right: 6%; }
+}
+
+@media (min-width: 1800px) {
+  body { font-size: 1.3rem; }
+  .ch1-details, .ch2-blessings { max-width: 1400px; }
+}
+
+/* ---------- Phone landscape (e.g. 667 × 375) ---------- */
+@media (orientation: landscape) and (max-height: 520px) {
+  .prelude { min-height: 0; }
+  .prelude__names { flex-direction: row; align-items: baseline; gap: .18em; font-size: clamp(2.6rem, 9vw, 4.4rem); }
+  .prelude__names .amp { font-size: .62em; }
+  .prelude__content { padding-bottom: calc(8vh + var(--safe-b)); }
+  .prelude .orn--divider { margin: .6rem auto; }
+  .scroll-cue { display: none; }
+
+  .opening__cta { top: 50%; gap: 10px; }
+  .seal { width: 84px; }
+
+  .chapter__intro { min-height: 100svh; padding: 6vh var(--gutter); }
+  .chapter__num { font-size: clamp(4rem, 22vh, 7rem); }
+  .chapter__title { font-size: clamp(1.4rem, 4vw, 2.2rem); max-width: 26ch; }
+
+  .ch1-invite { min-height: 0; padding: 12vh var(--gutter); }
+  .names-grand { flex-direction: row; align-items: baseline; gap: .16em; font-size: clamp(3rem, 11vw, 5.4rem); margin: 1.2rem 0; }
+  .names-grand__a, .names-grand__b { transform: none; }
+
+  .ch1-details, .ch2-blessings, .ch2-compliments {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    justify-items: start;
+    column-gap: 2.4rem;
+    text-align: left;
+  }
+  .ch1-details .orn--divider, .ch2-blessings .orn--divider { margin-left: 0; }
+  .ch1-details .actions { justify-content: flex-start; }
+  .ch1-details .venue, .ch2-blessings .family, .blessing-text { margin-left: 0; }
+  .om { margin-left: 0; }
+  .ch2-blessings__media { order: 0; }
+  .arch-frame, .ch2-compliments__media { width: min(34vw, 62svh); }
+  .procession li { flex-direction: row; }
+
+  .countdown-scene__stage { width: auto; grid-template-columns: auto auto; align-items: center; column-gap: 2rem; }
+  .countdown-scene__stage > * { grid-area: auto; }
+  .countdown-scene__arch { width: min(34vw, 64svh); }
+  .countdown { align-self: center; padding: 0; }
+  .countdown__value { font-size: clamp(2rem, 6vw, 3rem); }
+
+  .closing { min-height: 140svh; }
+  .closing__names { flex-direction: row; align-items: baseline; gap: .18em; font-size: clamp(2.6rem, 9vw, 4.4rem); }
+  .closing__names .amp { font-size: .62em; }
+}
